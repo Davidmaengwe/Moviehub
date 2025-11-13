@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieHub - Your Ultimate Movie Destination</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loader">
+            <div class="spinner"></div>
+            <p>Loading MovieHub...</p>
+            <div class="progress-loader">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <span id="progress-text">0%</span>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="auth-modal hidden">
+        <div class="auth-container">
+            <button id="close-auth" class="close-btn">&times;</button>
+            
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form">
+                <h2>Welcome Back</h2>
+                <p>Sign in to your account</p>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" name="email" required>
+                        <span class="error-message" id="login-email-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="password" required>
+                        <span class="error-message" id="login-password-error"></span>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn">Sign In</button>
+                </form>
+                
+                <div class="auth-switch">
+                    <p>Don't have an account? <a href="#" id="show-register">Sign up</a></p>
+                </div>
+            </div>
+            
+            <!-- Register Form -->
+            <div id="register-form" class="auth-form active">
+                <h2>Join MovieHub</h2>
+                <p>Create your free account</p>
+                
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" name="name" required>
+                        <span class="error-message" id="register-name-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" name="email" required>
+                        <span class="error-message" id="register-email-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" name="password" required>
+                        <span class="error-message" id="register-password-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirm Password</label>
+                        <input type="password" id="register-confirm-password" name="confirmPassword" required>
+                        <span class="error-message" id="register-confirm-password-error"></span>
+                    </div>
+                    
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="terms" required>
+                            <span>I agree to the Terms of Service</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="auth-btn">Create Account</button>
+                </form>
+                
+                <div class="auth-switch">
+                    <p>Already have an account? <a href="#" id="show-login">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content hidden">
+        <header>
+            <nav>
+                <h1>🎬 MovieHub</h1>
+                <ul>
+                    <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                    <li><a href="#movies" class="nav-link" data-section="movies">Movies</a></li>
+                    <li><a href="#genres" class="nav-link" data-section="genres">Genres</a></li>
+                    <li><a href="#watchlist" class="nav-link" data-section="watchlist">Watchlist</a></li>
+                    <li>
+                        <div id="auth-buttons">
+                            <button id="login-btn" class="auth-nav-btn">Login</button>
+                            <button id="register-btn" class="auth-nav-btn primary">Sign Up</button>
+                        </div>
+                        <div id="user-menu" class="user-menu hidden">
+                            <span id="user-greeting">Welcome, User!</span>
+                            <button id="logout-btn" class="logout-btn">Logout</button>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <!-- Home Section -->
+            <section id="home" class="content-section active">
+                <div class="hero-section">
+                    <div class="hero-content">
+                        <h2>Discover Your Next Favorite Movie</h2>
+                        <p>Explore thousands of movies, create watchlists, and track your cinematic journey</p>
+                        
+                        <div id="user-content" class="user-content hidden">
+                            <div class="welcome-card">
+                                <h3>Hello, <span id="display-name">User</span>! 👋</h3>
+                                <p>Ready to discover amazing movies?</p>
+                                <div class="user-stats">
+                                    <div class="stat">
+                                        <span class="stat-number" id="watchlist-count">0</span>
+                                        <span class="stat-label">In Watchlist</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-number" id="watched-count">0</span>
+                                        <span class="stat-label">Movies Watched</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="guest-content">
+                            <div class="guest-card">
+                                <h3>Join Our Movie Community</h3>
+                                <p>Create an account to save your watchlist and get personalized recommendations</p>
+                                <div class="action-buttons">
+                                    <button id="content-login" class="action-btn secondary">Login</button>
+                                    <button id="content-register" class="action-btn primary">Get Started</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="featured-section">
+                    <h3>Trending Now</h3>
+                    <div class="movies-grid">
+                        <div class="movie-card">
+                            <div class="movie-poster" style="background: linear-gradient(45deg, #ff6b6b, #ee5a24);"></div>
+                            <div class="movie-info">
+                                <h4>Action Blockbuster</h4>
+                                <p>2024 • Action</p>
+                                <div class="rating">⭐ 8.2/10</div>
+                                <button class="watch-btn">Add to Watchlist</button>
+                            </div>
+                        </div>
+                        <div class="movie-card">
+                            <div class="movie-poster" style="background: linear-gradient(45deg, #4834d4, #686de0);"></div>
+                            <div class="movie-info">
+                                <h4>Sci-Fi Adventure</h4>
+                                <p>2024 • Sci-Fi</p>
+                                <div class="rating">⭐ 7.9/10</div>
+                                <button class="watch-btn">Add to Watchlist</button>
+                            </div>
+                        </div>
+                        <div class="movie-card">
+                            <div class="movie-poster" style="background: linear-gradient(45deg, #00d2d3, #54a0ff);"></div>
+                            <div class="movie-info">
+                                <h4>Romantic Comedy</h4>
+                                <p>2024 • Romance</p>
+                                <div class="rating">⭐ 8.5/10</div>
+                                <button class="watch-btn">Add to Watchlist</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Movies Section -->
+            <section id="movies" class="content-section">
+                <div class="section-header">
+                    <h2>All Movies</h2>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search movies..." id="movie-search">
+                    </div>
+                </div>
+
+                <div class="filters">
+                    <select id="genre-filter">
+                        <option value="">All Genres</option>
+                        <option value="action">Action</option>
+                        <option value="comedy">Comedy</option>
+                        <option value="drama">Drama</option>
+                        <option value="sci-fi">Sci-Fi</option>
+                        <option value="horror">Horror</option>
+                    </select>
+                    <select id="year-filter">
+                        <option value="">All Years</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                    </select>
+                </div>
+
+                <div class="movies-grid large">
+                    <!-- Movies will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Genres Section -->
+            <section id="genres" class="content-section">
+                <h2>Browse by Genre</h2>
+                <div class="genres-grid">
+                    <div class="genre-card" data-genre="action">
+                        <div class="genre-icon">💥</div>
+                        <h3>Action</h3>
+                        <p>Exciting adventures</p>
+                    </div>
+                    <div class="genre-card" data-genre="comedy">
+                        <div class="genre-icon">😂</div>
+                        <h3>Comedy</h3>
+                        <p>Laugh out loud</p>
+                    </div>
+                    <div class="genre-card" data-genre="drama">
+                        <div class="genre-icon">🎭</div>
+                        <h3>Drama</h3>
+                        <p>Emotional stories</p>
+                    </div>
+                    <div class="genre-card" data-genre="sci-fi">
+                        <div class="genre-icon">🚀</div>
+                        <h3>Sci-Fi</h3>
+                        <p>Future worlds</p>
+                    </div>
+                    <div class="genre-card" data-genre="horror">
+                        <div class="genre-icon">👻</div>
+                        <h3>Horror</h3>
+                        <p>Thrilling suspense</p>
+                    </div>
+                    <div class="genre-card" data-genre="romance">
+                        <div class="genre-icon">💕</div>
+                        <h3>Romance</h3>
+                        <p>Love stories</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Watchlist Section -->
+            <section id="watchlist" class="content-section">
+                <div class="section-header">
+                    <h2>My Watchlist</h2>
+                    <p>Your saved movies</p>
+                </div>
+
+                <div id="empty-watchlist" class="empty-state">
+                    <div class="empty-icon">🎬</div>
+                    <h3>Your watchlist is empty</h3>
+                    <p>Start adding movies to watch later</p>
+                </div>
+
+                <div id="watchlist-content" class="hidden">
+                    <div class="watchlist-grid">
+                        <!-- Watchlist items will be here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add this button to your HTML -->
+<button id="clear-data-btn" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    z-index: 10000;
+">
+    🧹 Clear All Data
+</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
